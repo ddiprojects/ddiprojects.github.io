@@ -7,7 +7,9 @@ export default function Routes(props) {
     return (
         <Switch>
             <Route path="/" exact component={Landing} />
-            <Route path='/about' exact component={AboutUs} />
+            {/* <Route path='/about' exact component={AboutUs} /> */}
+            <Route path="/about" exact component={Landing} />
+            <Route component={Landing} />
         </Switch>
     )
 }

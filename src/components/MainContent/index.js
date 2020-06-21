@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { highlights } from './highlights'
 
 export default function MainContent() {
@@ -22,7 +23,7 @@ export default function MainContent() {
                                                                     <div className="elementor-element elementor-element-1a3ebb3 scheme_dark sc_fly_static elementor-widget elementor-widget-trx_sc_socials" data-id="1a3ebb3" data-element_type="widget" data-widget_type="trx_sc_socials.default">
                                                                         <div className="elementor-widget-container">
                                                                             <div id="trx_sc_socials_1079374379" className="sc_socials sc_socials_extra sc_align_none">
-                                                                                <div className="socials_wrap"><a target="_blank" href="https://twitter.com/ancora_themes" className="social_item social_item_style_icons sc_icon_type_icons social_item_type_icons"><span className="social_icon social_icon_twitter"><span className="icon-twitter" /></span></a><a target="_blank" href="https://www.facebook.com/AncoraThemes/" className="social_item social_item_style_icons sc_icon_type_icons social_item_type_icons"><span className="social_icon social_icon_facebook"><span className="icon-facebook" /></span></a><a target="_blank" href="https://www.youtube.com/channel/UCdIjRh7-lPVHqTTKpaf8PLA" className="social_item social_item_style_icons sc_icon_type_icons social_item_type_icons"><span className="social_icon social_icon_youtube-video"><span className="icon-youtube-video" /></span></a>
+                                                                                <div className="socials_wrap"><a target="_blank" href="https://twitter.com" className="social_item social_item_style_icons sc_icon_type_icons social_item_type_icons"><span className="social_icon social_icon_twitter"><span className="icon-twitter" /></span></a><a target="_blank" href="https://www.facebook.com/" className="social_item social_item_style_icons sc_icon_type_icons social_item_type_icons"><span className="social_icon social_icon_facebook"><span className="icon-facebook" /></span></a><a target="_blank" href="https://www.youtube.com/" className="social_item social_item_style_icons sc_icon_type_icons social_item_type_icons"><span className="social_icon social_icon_youtube-video"><span className="icon-youtube-video" /></span></a>
                                                                                 </div>{/* /.socials_wrap */}
                                                                             </div>{/* /.sc_socials */}
                                                                         </div>
@@ -161,10 +162,10 @@ export default function MainContent() {
                                                        & Lifeskills Empowerment</span>
                                                                                                                 </h2>
                                                                                                                 <div id="sc_button_1893906760" className="sc_item_button sc_button_wrap sc_item_button sc_item_button_default sc_promo_button">
-                                                                                                                    <a href="/about/" className="sc_button sc_button_default sc_button_size_normal sc_button_icon_left"><span className="sc_button_text"><span className="sc_button_title">More
+                                                                                                                    <Link to="/about/" className="sc_button sc_button_default sc_button_size_normal sc_button_icon_left"><span className="sc_button_text"><span className="sc_button_title">More
                                                                                                                     About
                                                               Us</span></span>
-                                                                                                                        {/* /.sc_button_text */}</a>
+                                                                                                                        {/* /.sc_button_text */}</Link>
                                                                                                                     {/* /.sc_button */}
                                                                                                                 </div>
                                                                                                                 {/* /.sc_item_button */}
@@ -196,8 +197,8 @@ export default function MainContent() {
                                                                                                                         <div className="sc_icons_item_description">
                                                                                                                             <span>Human-elephant conflict is only a microcosm of the wider ecological struggle for survival between humans and wildlife.  To strengthen the capacities (traditional conflict mitigation techniques) and the knowledge of the local children sharing their landscape with elephants to cope with human-elephant conflict, we began conservation clubs in...</span>
                                                                                                                         </div>
-                                                                                                                        <a href="/about/" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/about/" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -211,8 +212,8 @@ export default function MainContent() {
                                                                                                                             <span>65% of women and girls in Kenya are unable to afford sanitary pads. Only 50% of girls say that they openly discuss menstruation at home. Just 32% of rural schools have a private place for girls to change their menstrual product. And only
 12% of girls in Kenya would be comfortable receiving the information from their mother...</span>
                                                                                                                         </div>
-                                                                                                                        <a href="/our-team/" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/our-team/" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -225,8 +226,8 @@ export default function MainContent() {
                                                                                                                         <div className="sc_icons_item_description">
                                                                                                                             <span>About 49% of millennials say their degree is “very or somewhat unimportant” to their current job. Our youth empowerment and lifeskills training in collaboration with diverse professionals. Life skills are the building blocks or framework that allow students to apply the knowledge they acquire in school to real world problems and situations.</span>
                                                                                                                         </div>
-                                                                                                                        <a href="/donation-page/" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/donation-page/" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -326,22 +327,22 @@ export default function MainContent() {
                                                                                                         <div data-post-id={1802} className="sc_blogger_item sc_blogger_item_default sc_blogger_item_default_classic_alter sc_blogger_item_odd sc_blogger_item_align_none post_format_standard sc_blogger_item_with_image sc_blogger_item_on_plate sc_blogger_item_image_position_top post-1802 post type-post status-publish format-standard has-post-thumbnail hentry category-battling tag-help tag-social tag-volunteering" data-item-number={1}>
                                                                                                             <div className="sc_blogger_item_body">
                                                                                                                 <div className="post_featured with_thumb hover_stroke sc_item_featured sc_blogger_item_featured">
-                                                                                                                    <img width={770} height={513} src="images/ddi2.jpg" className="attachment-impacto_patronus-thumb-extra size-impacto_patronus-thumb-extra wp-post-image" alt />
+                                                                                                                    <img width={770} height={513} src={highlight.image} className="attachment-impacto_patronus-thumb-extra size-impacto_patronus-thumb-extra wp-post-image" alt />
                                                                                                                     <div className="mask">
                                                                                                                     </div>
-                                                                                                                    <a href="/we-are-committed-to-working-with-endangered-species-2/" aria-hidden="true"><span /><span /><span /><span /></a>
+                                                                                                                    <Link to="/" aria-hidden="true"><span /><span /><span /><span /></Link>
                                                                                                                 </div>
                                                                                                                 <div className="sc_blogger_item_content entry-content">
                                                                                                                     <h5 className="sc_blogger_item_title entry-title" data-item-number={highlight.id}>
-                                                                                                                        <a href="/we-are-committed-to-working-with-endangered-species-2/" rel="bookmark">{highlight.title}</a>
+                                                                                                                        <Link to="/" rel="bookmark">{highlight.title}</Link>
                                                                                                                     </h5>
                                                                                                                     <div className="sc_blogger_item_excerpt">
                                                                                                                         {highlight.description}
                                                                                                                     </div>
-                                                                                                                    <div className="sc_blogger_item_button sc_item_button">
-                                                                                                                        <a href="/we-are-committed-to-working-with-endangered-species-2/" className="sc_button sc_button_size_small">Read
-                                                            More</a>
-                                                                                                                    </div>
+                                                                                                                    {/* <div className="sc_blogger_item_button sc_item_button">
+                                                                                                                        <Link to="/we-are-committed-to-working-with-endangered-species-2/" className="sc_button sc_button_size_small">Read
+                                                            More</Link>
+                                                                                                                    </div> */}
                                                                                                                 </div>
                                                                                                                 {/* .entry-content */}
                                                                                                             </div>
@@ -535,8 +536,8 @@ export default function MainContent() {
                                                                                                                 and
                                                                                                                 accept
                                                                                                                 the
-                                                        <a href="/privacy-policy/" target="_blank">Privacy
-                                                          Policy</a>.</label>
+                                                        <Link to="/privacy-policy/" target="_blank">Privacy
+                                                          Policy</Link>.</label>
                                                                                                             </div>
                                                                                                             <div className="mc4wp-response">
                                                                                                             </div>
@@ -624,8 +625,8 @@ export default function MainContent() {
                                                                                                                         <h4 className="sc_icons_item_title">
                                                                                                                             <span>Empathy</span>
                                                                                                                         </h4>
-                                                                                                                        <a href="/about" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/about" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -639,8 +640,8 @@ export default function MainContent() {
                                                                                                                             <span>Commitment
                                                             </span>
                                                                                                                         </h4>
-                                                                                                                        <a href="/about" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/about" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -653,8 +654,8 @@ export default function MainContent() {
                                                                                                                         <h4 className="sc_icons_item_title">
                                                                                                                             <span>Inclusion</span>
                                                                                                                         </h4>
-                                                                                                                        <a href="/about" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/about" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -667,8 +668,8 @@ export default function MainContent() {
                                                                                                                         <h4 className="sc_icons_item_title">
                                                                                                                             <span>Human Rights</span>
                                                                                                                         </h4>
-                                                                                                                        <a href="/about" className="sc_icons_item_link">Read
-                                                            More</a>
+                                                                                                                        <Link to="/about" className="sc_icons_item_link">Read
+                                                            More</Link>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -721,9 +722,9 @@ export default function MainContent() {
                                                                                                                     <span className="sc_item_title_text">Volunteer, Partner with us or purchase merchandise to support us</span>
                                                                                                                 </h2>
                                                                                                                 <div id="sc_button_1665051761" className="sc_item_button sc_button_wrap sc_item_button sc_item_button_default sc_promo_button">
-                                                                                                                    <a href="/donations/" className="sc_button sc_button_default sc_button_size_normal sc_button_icon_left"><span className="sc_button_text"><span className="sc_button_title">See How
+                                                                                                                    <Link to="/donations/" className="sc_button sc_button_default sc_button_size_normal sc_button_icon_left"><span className="sc_button_text"><span className="sc_button_title">See How
                                                                                                             </span></span>
-                                                                                                                        {/* /.sc_button_text */}</a>
+                                                                                                                        {/* /.sc_button_text */}</Link>
                                                                                                                     {/* /.sc_button */}
                                                                                                                 </div>
                                                                                                                 {/* /.sc_item_button */}

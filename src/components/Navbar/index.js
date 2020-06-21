@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar(props) {
     return (
@@ -32,7 +33,8 @@ export default function Navbar(props) {
                                                                     <a href="/" aria-current="page"><span>Home</span></a>
                                                                 </li>
                                                                 <li id="menu-item-228" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-228">
-                                                                    <a href="/about"><span>About Us</span></a>
+                                                                   
+                                                                    <a href="/"><span>About Us</span></a>
                                                                     {/* <ul className="sub-menu">
                                                                         <li id="menu-item-232" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-232">
                                                                             <a href="/typography/"><span>Intro</span></a>
@@ -51,7 +53,7 @@ export default function Navbar(props) {
                                                                     <a href="#"><span>Our Work</span></a>
                                                                     <ul className="sub-menu">
                                                                         <li id="menu-item-365" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-365">
-                                                                            <a href="/about-us/"><span>Programs
+                                                                            <a href="/-us/"><span>Programs
                           </span></a></li>
                                                                         <li id="menu-item-366" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-366">
                                                                             <a href="/our-team/"><span>Donate
@@ -64,8 +66,8 @@ export default function Navbar(props) {
                                                                 <li id="menu-item-233" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-233">
                                                                     <a href="#"><span>Media Center</span></a>
                                                                     <ul className="sub-menu">
-                                                                        <li id="menu-item-234" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-234">
-                                                                            <a href="/all-posts/"><span>Gallery</span></a></li>
+                                                                        {/* <li id="menu-item-234" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-234">
+                                                                            <a href="/all-posts/"><span>Gallery</span></a></li> */}
                                                                         <li id="menu-item-235" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-235">
                                                                             <a href="https://instagram.com/drawingdreams_initiative"><span>Instagram</span></a>
 
@@ -78,15 +80,20 @@ export default function Navbar(props) {
                                                         </nav>{/* /.sc_layouts_menu */}
                                                     </div>
                                                 </div>
-                                                <div className="sc_layouts_item elementor-element elementor-element-3c6553b1 sc_fly_static elementor-widget elementor-widget-trx_sc_button" data-id="3c6553b1" data-element_type="widget" data-widget_type="trx_sc_button.default">
-                                                    <div className="elementor-widget-container">
-                                                        <div id="trx_sc_button_986409312" className="sc_item_button sc_button_wrap"><a href="/donations/prevent-elephant-starvation/" className="sc_button sc_button_default sc_button_size_normal sc_button_icon_left"><span className="sc_button_text"><span className="sc_button_title">Make A
-                    Donation</span></span>
-                                                            {/* /.sc_button_text */}</a>{/* /.sc_button */}
-                                                        </div>
+                                                {/* <div className="sc_layouts_item elementor-element elementor-element-3c6553b1 sc_fly_static elementor-widget elementor-widget-trx_sc_button" data-id="3c6553b1" data-element_type="widget" data-widget_type="trx_sc_button.default"> */}
+                                                    {/* <div className="elementor-widget-container"> */}
+                                                        {/* <div id="trx_sc_button_986409312" className="sc_item_button sc_button_wrap"><a href="/donations/prevent-elephant-starvation/" className="sc_button sc_button_default sc_button_size_normal sc_button_icon_left"><span className="sc_button_text"><span className="sc_button_title">Make A */}
+                    {/* Donation</span></span> */}
+                    
+                                                            {/* /.sc_button_text */}
+                                                            {/* </a> */}
+                                                            {/* /.sc_button */}
+                                                        {/* </div> */}
                                                         {/* /.sc_item_button */}
-                                                    </div>
-                                                </div>
+                                                    {/* </div> */}
+                                                {/* </div> */}
+
+
                                             </div>
                                         </div>
                                     </div>
