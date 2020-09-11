@@ -1,0 +1,1023 @@
+.woocommerce-product-gallery {
+    opacity: 1 !important
+}
+.infinite-scroll .woocommerce-pagination {
+    display: none
+}
+
+.woocommerce form .form-row .required {
+    visibility: visible
+}
+
+.recentcomments a {
+    display: inline !important;
+    padding: 0 !important;
+    margin: 0 !important
+}
+
+.logo-wrap .logo_default, .logo-wrap .logo_dark, .logo-wrap .logo_light {
+    height: 55px
+}
+
+.logo .site-title {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000;
+    font-size: 20px
+}
+
+.logo .description {
+    font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    line-height: 15px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-style: normal;
+    color: #999;
+    font-size: 10px
+}
+
+.logo-wrap .logo_default, .logo-wrap .logo_dark, .logo-wrap .logo_light {
+    padding-top: 10px;
+    padding-right: 0;
+    padding-bottom: 10px;
+    padding-left: 20px
+}
+
+body.is-sticky #site-header .logo {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0
+}
+
+.desktop-menu .page_item a, .desktop-menu .menu-item a, a.call-to-action-btn, .header-user-name, .header-controls-wrap .social-content {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 22px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px
+}
+
+.desktop-menu .page_item .page_item a, .desktop-menu .menu-item .menu-item a {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 21px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px
+}
+
+.default-header .logo-multi-wrap, .logo-multi-wrap, .light-skin.to-preset .is-not-top .logo-multi-wrap, .dark-skin.to-preset .is-not-top .logo-multi-wrap {
+    background-color: #fff
+}
+
+.default-header .desktop-menu .menu-item a, .default-header .is-not-top .desktop-menu .menu-item a, .desktop-menu .menu-item a, .is-not-top .desktop-menu .menu-item a, .header-colors-wrapper, .cart-block i, .header-light-skin .is-not-top .topbar-email-text, .header-light-skin .is-not-top .topbar-address-text, .header-light-skin .is-not-top .topbar-phone-number, .header-dark-skin .is-not-top .topbar-email-text, .header-dark-skin .is-not-top .topbar-address-text, .header-dark-skin .is-not-top .topbar-phone-number, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-2.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-2.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-3.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-3.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-3.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-3.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-3.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-menu-3.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-3.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-3.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-menu-5.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-5.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-5.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-5.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-5.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-menu-5.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-5.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-5.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-multi-level-1.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-multi-level-1.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-multi-level-1.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-multi-level-1.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-multi-level-1.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-multi-level-1.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-multi-level-1.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-multi-level-1.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-multi-level-2.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-multi-level-2.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-multi-level-2.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-multi-level-2.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-multi-level-2.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-parallax-multi-level-2.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-multi-level-2.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-multi-level-2.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-1.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-top-bar-1.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-top-bar-1.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-top-bar-1.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-top-bar-1.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-1.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-top-bar-1.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-top-bar-1.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-2.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-top-bar-2.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-top-bar-2.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-top-bar-2.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-top-bar-2.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-2.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-top-bar-2.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-top-bar-2.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-3.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-top-bar-3.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-top-bar-3.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-top-bar-3.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-top-bar-3.header-dark-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-3.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-top-bar-3.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-top-bar-3.header-light-skin .is-not-top .controls-wrap .cart-block>span i, .horizontal-header-top-bar-2.header-dark-skin .is-not-top .social-icons li .social-icons-icon, .horizontal-header-top-bar-2.header-light-skin .is-not-top .social-icons li .social-icons-icon {
+    color: #555
+}
+
+.parallax-menu-btn {
+    border-color: #555
+}
+
+.menu-design-skin1 .desktop-menu .menu-item:before, .menu-design-skin1 .desktop-menu .menu-item:after, .menu-design-skin1 .desktop-menu .page_item:before, .menu-design-skin1 .desktop-menu .page_item:after, .menu-design-skin1 .desktop-menu .menu-item:hover:before, .menu-design-skin1 .desktop-menu .menu-item .menu-item a:before, .menu-design-skin1 .desktop-menu .menu-item .menu-item a:after {
+    background-color: #7926c6
+}
+
+.default-header .desktop-menu .menu-item:hover a, .default-header .is-not-top .desktop-menu .menu-item:hover a, .desktop-menu .menu-item:hover a, .is-not-top .desktop-menu .menu-item:hover a {
+    color: #555
+}
+
+.menu-design-skin1 .desktop-menu .menu-item::before {
+    background-color: #555
+}
+
+.default-header .desktop-menu .menu-item .menu-item a, .desktop-menu .menu-item .menu-item a {
+    color: #fff
+}
+
+.menu-design-skin1 .desktop-menu .menu-item .menu-item a:before, .menu-design-skin1 .desktop-menu .menu-item .menu-item a:after, .menu-design-skin1 .desktop-menu .menu-item .menu-item a:hover:before, .menu-design-skin1 .desktop-menu .menu-item .menu-item .menu-item a:before, .menu-design-skin1 .desktop-menu .menu-item .menu-item .menu-item a:after {
+    background-color: #256ab3
+}
+
+.default-header .desktop-menu .menu-item .menu-item:hover a, .desktop-menu .menu-item .menu-item:hover a {
+    color: #999
+}
+
+.menu-design-skin1 .desktop-menu .menu-item .menu-item::before {
+    background-color: #999
+}
+
+.default-header .desktop-menu .menu-item .menu-item, .desktop-menu .menu-item .sub-menu, .default-header .desktop-menu .menu-item:hover, .desktop-menu .menu-item:hover {
+    background-color: #fff
+}
+
+.default-header .desktop-menu .menu-item .menu-item:hover, .desktop-menu .menu-item .menu-item:hover {
+    background-color: #eee
+}
+
+.default-header .desktop-menu .menu-item .menu-item .menu-item a, .desktop-menu .menu-item .menu-item .menu-item a {
+    color: #555
+}
+
+.default-header .desktop-menu .menu-item .menu-item .menu-item a:hover, .desktop-menu .menu-item .menu-item .menu-item a:hover {
+    color: #999
+}
+
+.default-header .desktop-menu .menu-item .menu-item .menu-item a:active, .desktop-menu .menu-item .menu-item .menu-item a:active {
+    color: #555
+}
+
+.desktop-menu .sub-menu .menu-item.menu-item-has-children .sub-menu, .desktop-menu .sub-menu .menu-item.menu-item-has-children .sub-menu {
+    background-color: #eee
+}
+
+.default-header .desktop-menu .menu-item .menu-item .menu-item:hover, .desktop-menu .menu-item .menu-item .menu-item:hover {
+    background-color: #fff
+}
+
+.to-preset .desktop-menu .menu-item.menu-item-has-children.menu-item-megamenu .sub-menu a {
+    color: #999
+}
+
+.to-preset .desktop-menu .menu-item.menu-item-has-children.menu-item-megamenu .sub-menu, .desktop-menu .menu-item.menu-item-megamenu:hover {
+    background-color: #fff
+}
+
+.to-preset .desktop-menu .menu-item.menu-item-has-children.menu-item-megamenu .sub-menu .menu-item .sub-menu .menu-item a {
+    color: #555
+}
+
+.to-preset .desktop-menu .menu-item.menu-item-has-children.menu-item-megamenu .sub-menu .menu-item .sub-menu .menu-item a:hover {
+    color: #000
+}
+
+.to-preset .desktop-menu .menu-item.menu-item-has-children.menu-item-megamenu .sub-menu .menu-item .sub-menu .menu-item .sub-menu a {
+    color: #999
+}
+
+.to-preset .desktop-menu .menu-item.menu-item-has-children.menu-item-megamenu .sub-menu .menu-item .sub-menu .menu-item .sub-menu a:hover {
+    color: #000
+}
+
+.menu-design-skin1 .desktop-menu .menu-item .menu-item .menu-item:before {
+    background-color: #000
+}
+
+.topbar, .horizontal-header-parallax-multi-level-topbar-2 .topbar-info-wrap, .horizontal-header-parallax-multi-level-topbar-2 #controls-content-social, .horizontal-header-parallax-multi-level-topbar-2 #user-menu-popup, .horizontal-header-parallax-multi-level-topbar-2 .header-user-name {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 22px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 13px
+}
+
+.to-preset .menu-hidden-button {
+    background-color: #6916b6
+}
+
+.to-preset .menu-hidden-button {
+    color: #fff
+}
+
+.to-preset .menu-hidden-button:hover {
+    background-color: #fff
+}
+
+.to-preset .menu-hidden-button:hover {
+    color: #000
+}
+
+.hide-vertical-bar {
+    background-color: #000
+}
+
+.hide-vertical-bar #user-menu-popup a, .hide-vertical-bar #controls-content-social .social-label, .hide-vertical-bar #controls-content-social .social-label:hover {
+    color: #fff
+}
+
+.hide-vertical-bar #user-menu-popup a:hover {
+    color: #555
+}
+
+.hide-vertical-bar #user-menu-popup a::before {
+    background-color: #555
+}
+
+.hide-vertical-bar {
+    color: #999
+}
+
+.to-preset .topbar, .is-not-top .topbar {
+    background-color: #59139c
+}
+
+.to-preset .header-colors-wrapper, .topbar-left {
+    color: #fff
+}
+
+.horizontal-header-parallax-menu-6 .social-block>span, .horizontal-header-parallax-menu-6 .search-block>span, .horizontal-header-parallax-menu-6 .cart-block>span i, .horizontal-header-parallax-menu-6 .header-user-name, .horizontal-header-parallax-menu-6 .social-wrap-inline .social-icons-icon, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top .social-wrap-inline .social-icons-icon, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top .social-wrap-inline .social-icons-icon, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top .controls-wrap .header-user-name>span, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top .controls-wrap .social-block>span, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top .controls-wrap .search-block>span, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top .controls-wrap .cart-block>span i {
+    color: #fff
+}
+
+.to-preset .topbar-label::before, .is-not-top .topbar-label::before {
+    color: #f882ff
+}
+
+#controls-content-social, #user-menu-popup {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 18px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px
+}
+
+.user-wrap.header-user-info-wrap #user-menu-popup {
+    background-color: #fff
+}
+
+.user-wrap.header-user-info-wrap #user-menu-popup::before {
+    border-bottom-color: #fff
+}
+
+#controls-content-social .social-label, #user-menu-popup a {
+    color: #999
+}
+
+#user-menu-popup a:hover {
+    color: #000
+}
+
+#user-menu-popup a::before {
+    background-color: #000
+}
+
+.header-controls-wrap .social-content {
+    background-color: #fff
+}
+
+.header-controls-wrap .social-content::before {
+    border-bottom-color: #fff
+}
+
+#controls-content-social a:hover .social-icons-icon {
+    color: #000
+}
+
+#controls-content-social .social-label {
+    color: #555
+}
+
+#controls-content-social .social-label:hover {
+    color: #000
+}
+
+.social-icons .social-label::after {
+    background-color: #000
+}
+
+.parallax-menu .menu-item a, .parallax-menu a {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px
+}
+
+.to-preset .menu-right-fixed:hover, .parallax-menu-top, .logo-multi-parallax-wrap, #controls-parallax-menu, .menu-rounded-popup-bg, #proximity-menu, #menu-hint, .header-dark-skin .is-not-top .logo-multi-parallax-wrap, .header-light-skin .is-not-top .logo-multi-parallax-wrap, .header-dark-skin .is-not-top #header-wrap.parallax-menu-top, .header-light-skin .is-not-top #header-wrap.parallax-menu-top {
+    background-color: #fff
+}
+
+.parallax-menu .menu-item a, #controls-parallax-menu .parallax-menu .menu-item a, #proximity-menu .parallax-menu .menu-item a, .menu-rounded-popup-items .menu-item a, #menu-hint::before, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .parallax-wrap.parallax-menu a, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .parallax-wrap.parallax-menu a, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top.is-hidden .parallax-wrap.parallax-menu a, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top.is-hidden .parallax-wrap.parallax-menu a:hover, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top.is-hidden .parallax-wrap.parallax-menu a, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top.is-hidden .parallax-wrap.parallax-menu a:hover, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top.is-hidden #controls-parallax-menu .parallax-menu a, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top.is-hidden #controls-parallax-menu .parallax-wrap.parallax-menu a, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top #controls-parallax-menu .parallax-wrap.parallax-menu a, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top #controls-parallax-menu .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-1.header-dark-skin .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-1.header-light-skin .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-2.header-dark-skin .is-not-top .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-2.header-dark-skin .is-not-top .parallax-wrap.parallax-menu a:hover, .horizontal-header-parallax-multi-level-2.header-light-skin .is-not-top .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-2.header-light-skin .is-not-top .parallax-wrap.parallax-menu a:hover, .horizontal-header-parallax-menu-1 .social-block>span, .horizontal-header-parallax-menu-1 .search-block>span, .horizontal-header-parallax-menu-1 .cart-block>span, .horizontal-header-parallax-menu-1 .header-user-name>span, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .social-block>span, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .search-block>span, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .cart-block>span, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .header-user-name>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .social-block>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .search-block>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .cart-block>span, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .header-user-name>span, .horizontal-header-parallax-multi-level-topbar-1.header-light-skin .is-not-top .social-block>span, .horizontal-header-parallax-multi-level-topbar-1.header-light-skin .is-not-top .search-block>span, .horizontal-header-parallax-multi-level-topbar-1.header-light-skin .is-not-top .cart-block>span, .horizontal-header-parallax-multi-level-topbar-1.header-light-skin .is-not-top .header-user-name>span, .horizontal-header-parallax-multi-level-topbar-1.header-dark-skin .is-not-top .social-block>span, .horizontal-header-parallax-multi-level-topbar-1.header-dark-skin .is-not-top .search-block>span, .horizontal-header-parallax-multi-level-topbar-1.header-dark-skin .is-not-top .cart-block>span, .horizontal-header-parallax-multi-level-topbar-1.header-dark-skin .is-not-top .header-user-name>span, .horizontal-header-parallax-multi-level-topbar-1.header-dark-skin .is-not-top .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-topbar-1.header-dark-skin .is-not-top .parallax-wrap.parallax-menu a:hover, .horizontal-header-parallax-multi-level-topbar-1.header-light-skin .is-not-top .parallax-wrap.parallax-menu a, .horizontal-header-parallax-multi-level-topbar-1.header-light-skin .is-not-top .parallax-wrap.parallax-menu a:hover {
+    color: #000
+}
+
+.to-preset .parallax-menu .menu-item a:hover, #proximity-menu .parallax-menu .menu-item a:hover, .header-dark-skin .is-not-top .logo-multi-parallax-wrap a:hover, .header-light-skin .is-not-top .logo-multi-parallax-wrap a:hover, .menu-rounded-popup-items .menu-item a:hover, .horizontal-header-parallax-multi-level-1.header-dark-skin .parallax-wrap.parallax-menu a:hover, .horizontal-header-parallax-multi-level-1.header-light-skin .parallax-wrap.parallax-menu a:hover {
+    color: #333
+}
+
+.to-preset .parallax-menu .menu-item, #controls-parallax-menu .parallax-menu .menu-item {
+    background-color: #5906a6
+}
+
+.to-preset .parallax-menu .menu-item:hover, .horizontal-header-parallax-menu-6 .parallax-menu a::before, #controls-parallax-menu .parallax-menu .menu-item:hover {
+    background-color: #6916b6
+}
+
+.horizontal-header-parallax-multi-level-1 .parallax-menu .menu-item::before, .horizontal-header-parallax-multi-level-1 .parallax-menu .menu-item::before, .horizontal-header-parallax-multi-level-2 .parallax-menu .menu-item::before, .horizontal-header-parallax-multi-level-2 .parallax-menu .menu-item::after, .horizontal-header-parallax-topbar-1 .parallax-menu .menu-item::before, .horizontal-header-parallax-topbar-1 .parallax-menu .menu-item::after, .horizontal-header-parallax-multi-level-topbar-1 .parallax-menu .menu-item::before, .horizontal-header-parallax-multi-level-topbar-1 .parallax-menu .menu-item::after, .horizontal-header-parallax-multi-level-topbar-2 .menu-right-fixed .parallax-wrap li::before, .horizontal-header-parallax-menu-5 .menu-right-fixed .parallax-wrap li::before, .horizontal-header-parallax-menu-4 .menu-rounded-popup-items .menu-item a::before, .horizontal-header-parallax-menu-4 .menu-rounded-popup-items .menu-item a::after, .horizontal-header-parallax-menu-3 .menu-rounded-popup-items .menu-item a::before, .horizontal-header-parallax-menu-3 .menu-rounded-popup-items .menu-item a::after, .horizontal-header-parallax-menu-2 .parallax-menu .menu-item a::before, .horizontal-header-parallax-menu-2 .parallax-menu .menu-item a::after, .horizontal-header-parallax-menu-1 .parallax-menu .menu-item::after, .horizontal-header-parallax-menu-1 .parallax-menu .menu-item::before, .header-dark-skin .is-not-top .logo-multi-parallax-wrap .menu-item:before, .header-light-skin .is-not-top .logo-multi-parallax-wrap .menu-item:before, .menu-rounded-popup-items .menu-item a:before, .menu-rounded-popup-items .menu-item a:after {
+    background-color: #e93f7f
+}
+
+.horizontal-header-parallax-menu-1 .parallax-menu a::before, #proximity-menu .parallax-menu .menu-item::after {
+    background-color: #000
+}
+
+.to-preset .parallax-menu .menu-item:hover:after {
+    border-color: #000
+}
+
+.to-preset .parallax-menu .menu-item.current::before, .header-dark-skin .is-not-top .logo-multi-parallax-wrap .menu-item.current:before, .header-dark-skin .is-not-top .logo-multi-parallax-wrap .menu-item.current:after, .header-light-skin .is-not-top .logo-multi-parallax-wrap .menu-item.current:before, .header-light-skin .is-not-top .logo-multi-parallax-wrap .menu-item.current:after, .horizontal-header-parallax-menu-2 .parallax-menu .menu-item.current a::before, .menu-rounded-popup-items .menu-item.current a:before, .menu-rounded-popup-items .menu-item.current a:after {
+    background-color: #e93f7f
+}
+
+.to-preset .parallax-menu .menu-item.current:after {
+    border-color: #e93f7f
+}
+
+.to-preset .parallax-menu .menu-item.current a, #controls-parallax-menu .parallax-menu .menu-item.current a, .horizontal-header-parallax-menu-6 .parallax-menu .current a::before {
+    background-color: #43d89f
+}
+
+.to-preset .parallax-menu .menu-item.current a, .header-type-hide.is-hidden .parallax-menu .menu-item.current a, #controls-parallax-menu .parallax-menu .menu-item.current a, #proximity-menu .parallax-menu .menu-item.current a, .horizontal-header-parallax-menu-1.header-dark-skin .is-not-top .logo-multi-parallax-wrap .menu-item.current a, .horizontal-header-parallax-menu-1.header-light-skin .is-not-top .logo-multi-parallax-wrap .menu-item.current a, .horizontal-header-parallax-menu-6.header-dark-skin .is-not-top #controls-parallax-menu .parallax-wrap.parallax-menu li.current a, .horizontal-header-parallax-menu-6.header-light-skin .is-not-top #controls-parallax-menu .parallax-wrap.parallax-menu li.current a, .horizontal-header-parallax-menu-6.header-dark-skin .is-top #controls-parallax-menu .parallax-menu .menu-item.current a, .horizontal-header-parallax-menu-6.header-dark-skin #controls-parallax-menu .parallax-menu .menu-item.current a, .horizontal-header-parallax-menu-6.header-light-skin .is-top #controls-parallax-menu .parallax-menu .menu-item.current a, .horizontal-header-parallax-menu-6.header-light-skin #controls-parallax-menu .parallax-menu .menu-item.current a {
+    color: #d03a71
+}
+
+.to-preset .parallax-menu li a:hover:after {
+    color: #fff
+}
+
+.to-preset .parallax-menu li.current a::after, .parallax-menu li:hover a::after, .parallax-menu li.current a::after {
+    color: #fff
+}
+
+#controls-content-search {
+    background-color: #000
+}
+
+.to-preset #controls-content-search .search::before, .hide-vertical-bar #controls-content-search .search::before, #controls-content-search .searchTerm, .hide-vertical-bar #controls-content-search .searchTerm {
+    color: #fff
+}
+
+#controls-content-search .search::after {
+    background-color: #fff
+}
+
+.cart-contents-count {
+    background-color: #93fed3
+}
+
+.cart-contents-count {
+    color: #000
+}
+
+.to-preset .call-to-action-btn, .header-light-skin .is-hidden .call-to-action-btn span, .header-dark-skin .is-hidden .call-to-action-btn span, .header-light-skin .is-hidden .call-to-action-btn, .header-dark-skin .is-hidden .call-to-action-btn {
+    color: #fff
+}
+
+.to-preset .call-to-action-btn:hover, .header-light-skin .call-to-action-btn:hover span, .header-dark-skin .call-to-action-btn:hover span, .header-light-skin .is-hidden .call-to-action-btn:hover span, .header-dark-skin .is-hidden .call-to-action-btn:hover span {
+    color: #555
+}
+
+.to-preset .call-to-action-btn, .is-hidden .call-to-action-btn {
+    background-color: #7926c6
+}
+
+.to-preset .call-to-action-btn:hover {
+    background-color: #fff
+}
+
+a.call-to-action-btn:hover::before {
+    border-color: #fff
+}
+
+.to-preset .call-to-action-btn {
+    border-color: #7926c6
+}
+
+.to-preset .call-to-action-btn:hover {
+    border-color: #fff
+}
+
+.footer-wrap {
+    background-color: #221c24
+}
+
+.footer-wrap {
+    color: #fff
+}
+
+.footer-wrap a, .footer-wrap aside.widget_nav_menu .menu-item a, aside.widget_nav_menu .sub-menu .menu-item a::before {
+    color: #fff
+}
+
+.footer-wrap a:hover {
+    color: #999
+}
+
+.footer-wrap {
+    background-color: #221c24
+}
+
+.footer-wrap {
+    color: #fff
+}
+
+.footer-wrap .searchTerm {
+    background-color: #fff
+}
+
+.footer-wrap .search::before {
+    color: #000
+}
+
+.footer-wrap .searchTerm {
+    color: #555
+}
+
+footer aside.widget {
+    background-color: #221c24
+}
+
+footer aside.widget {
+    color: #555
+}
+
+footer aside.widget a {
+    color: #fff
+}
+
+footer aside.widget h5 {
+    color: #fff
+}
+
+.footer-wrap .social-icons a {
+    background-color: #221c24
+}
+
+.footer-wrap .social-icons a {
+    color: #fff
+}
+
+.footer-wrap .social-icons a:hover {
+    background-color: #221c24
+}
+
+.footer-wrap .social-icons a:hover {
+    color: #fff
+}
+
+.footer-wrap .social-label {
+    background-color: #fff
+}
+
+.footer-wrap .social-label {
+    color: #555
+}
+
+.main-color {
+    color: #e93f7f
+}
+
+.ggt-container button.slick-next::before, .ggt-flex-direction-nav .ggt-flex-next::before, .ggt-container button.slick-prev::before, .ggt-flex-direction-nav .ggt-flex-prev::before, .ggt-odometers .ggt-odometer .ggt-stats-title .ggt-icon-wrapper, .form-design-skin1 .wpcf7-form-control.wpcf7-submit, .vc_images_carousel .icon-prev::before, .vc_images_carousel .icon-next::before, .vc_slide.vc_images_carousel .vc_carousel-indicators li {
+    background-color: #e93f7f
+}
+
+.vc_slide.vc_images_carousel .vc_carousel-indicators li.vc_active, .vc_slide.vc_images_carousel .vc_carousel-indicators li {
+    border-color: #e93f7f
+}
+
+.ggt-container button.slick-next::before, .ggt-flex-direction-nav .ggt-flex-next::before, .ggt-container button.slick-prev::before, .ggt-flex-direction-nav .ggt-flex-prev::before, .ggt-odometers .ggt-odometer .ggt-stats-title .ggt-icon-wrapper, .form-design-skin1 .wpcf7-form-control.wpcf7-submit, .vc_images_carousel .icon-prev::before, .vc_images_carousel .icon-next::before {
+    color: #fff
+}
+
+    {
+    background-color: #fff
+}
+
+body.blog, body.archive, body.search, body.single-post {
+    background-color: #f5f5f5
+}
+
+article.post {
+    background-color: #fff
+}
+
+article.post .entry-content h2, article.post .post-block-description .post-title a, .ggt-posts-carousel-item .post-title a, .ggt-post-loop-item .post-title a, .ggt-fullwidth-carousel-item .post-title a, .posts-ticker-item.slick-slide .post-title a {
+    color: #000
+}
+
+.post-date .date-block:first-child, .post-date .date-block:last-child {
+    color: #C9C9C9
+}
+
+article.post .post-block-description {
+    color: #999
+}
+
+article.post .post-block-description a {
+    color: #8940d6
+}
+
+.link-more {
+    color: #999
+}
+
+.link-more:hover {
+    color: #8940d6
+}
+
+link-more-arrowed {
+    color: #8940d6
+}
+
+.entry-content-author {
+    background-color: #8940d6
+}
+
+.author-popup-avatar {
+    border-color: #8940d6
+}
+
+.entry-content-author, .author-popup-authors-posts a, .author-popup-website a {
+    color: #fff
+}
+
+aside.blog-widget {
+    background-color: #fff
+}
+
+aside.widget h5 {
+    color: #000
+}
+
+aside.widget {
+    color: #999
+}
+
+aside.widget a {
+    color: #8940d6
+}
+
+.post-about-author, .author-info {
+    background-color: #fff
+}
+
+.post-like {
+    background-color: #f5f5f5
+}
+
+.like-count {
+    color: #000
+}
+
+.author_links a, .comments-link a, .comment-form .submit, .woocommerce.widget_shopping_cart .buttons a {
+    background-color: #94fed4
+}
+
+.author_links a, .comments-link a, .comment-form .submit, .woocommerce.widget_shopping_cart .buttons a {
+    color: #000
+}
+
+.author_links a:hover, .comments-link a:hover, .woocommerce.widget_shopping_cart .buttons a:hover, .comment-form .submit:hover {
+    background-color: #000
+}
+
+.author_links a:hover, .comments-link a:hover, .woocommerce.widget_shopping_cart .buttons a:hover, .comment-form .submit:hover {
+    color: #fff
+}
+
+.post-share::after {
+    background-color: #94fed4
+}
+
+.post-share-btn::before {
+    color: #000
+}
+
+.comments-title {
+    color: #000
+}
+
+.comments-area {
+    background-color: #fff
+}
+
+article.comment-body {
+    background-color: #94fed4
+}
+
+.comment-content {
+    color: #000
+}
+
+.comment-respond {
+    background-color: #fff
+}
+
+.comment-respond {
+    color: #000
+}
+
+.comment-respond {
+    color: #000
+}
+
+.post-navigation a {
+    color: #fff
+}
+
+.post-navigation a:hover {
+    color: #fff
+}
+
+.post-navigation .post-previous .nav-btn::before, .post-navigation .post-next .nav-btn::before, .post-navigation .post-previous .nav-btn::before {
+    background-color: #000
+}
+
+.post-navigation .post-previous a::after, .post-navigation .post-next a::after {
+    color: #000
+}
+
+.post-navigation .nav-btn {
+    background-color: #94fed4
+}
+
+.blog .breadcrumbs-container {
+    background-color: #fff
+}
+
+.blog .parasponsive_breadcrumbs {
+    color: #000
+}
+
+.blog .breadcumbs-sep::before, .blog .parasponsive_breadcrumbs>span:first-child::before {
+    color: #999
+}
+
+.blog .parasponsive_breadcrumbs a {
+    color: #999
+}
+
+.blog .parasponsive_breadcrumbs a:hover {
+    color: #000
+}
+
+body.woocommerce {
+    background-color: #fff
+}
+
+.woocommerce ul.products li.product .button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce .cart .button, .woocommerce .cart input.button {
+    background-color: #6916b6
+}
+
+.woocommerce ul.products li.product .button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce .cart .button, .woocommerce .cart input.button {
+    color: #fff
+}
+
+.woocommerce ul.products li.product .button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce .cart .button:hover, .woocommerce .cart input.button:hover {
+    background-color: #93fed3
+}
+
+.woocommerce ul.products li.product .button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce .cart .button:hover, .woocommerce .cart input.button:hover {
+    color: #000
+}
+
+.woocommerce a {
+    color: #000
+}
+
+.woocommerce ul.products li.product .price, .woocommerce div.product p.price, .woocommerce div.product span.price {
+    color: #555
+}
+
+#review_form {
+    background-color: #555
+}
+
+#review_form, #review_form span, #review_form p, #review_form label, #review_form p.stars a {
+    color: #555
+}
+
+.mobile-header-main {
+    background-color: #fff
+}
+
+.mobile-main-controls .cart-contents, .search-block-icon span::before {
+    color: #221c24
+}
+
+.mobile-btn-wrap .mobile-btn-dot {
+    background-color: #221c24
+}
+
+.mobile-header-menu {
+    background-color: #000
+}
+
+.nav-menu.mobile-menu {
+    background-color: #fff
+}
+
+.mobile-header li a {
+    color: #221c24
+}
+
+.mobile-header .page_item.page_item_has_children ul, .mobile-header .menu-item.menu-item-has-children ul {
+    background-color: #ccc
+}
+
+.mobile-header .page_item.page_item_has_children ul a, .mobile-header .menu-item.menu-item-has-children ul a {
+    color: #555
+}
+
+.mobile-header .page_item.page_item_has_children .page_item.page_item_has_children ul, .mobile-header .menu-item.menu-item-has-children .menu-item.menu-item-has-children ul {
+    background-color: #ccc
+}
+
+.mobile-header .page_item.page_item_has_children .page_item.page_item_has_children ul a, .mobile-header .menu-item.menu-item-has-children .menu-item.menu-item-has-children ul a {
+    color: #555
+}
+
+.nav-menu.mobile-menu a {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    line-height: 26px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px
+}
+
+.mobile-header-parallax .menu-item a, .mobile-parallax-menu-btn span::after {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    line-height: 26px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px
+}
+
+.mobile-parallax-menu-btn {
+    background-color: #fff
+}
+
+.mobile-parallax-menu-btn {
+    color: #fff
+}
+
+.menu-my-parallax-menu-container, #mobile-parallax-modal.mobile-menu-open {
+    background-color: #221c24
+}
+
+.mobile-header-parallax .menu-item a, .mobile-header-parallax .menu-item a:hover {
+    color: #221c24
+}
+
+#mobile-search-wrap {
+    background-color: #221c24
+}
+
+#mobile-search-wrap, .mobile-search-input .searchTerm {
+    color: #fff
+}
+
+.widget-aboutme-background {
+    background-color: #fff
+}
+
+body {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    line-height: 30px;
+    letter-spacing: 0px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px
+}
+
+body {
+    color: #555
+}
+
+.button, .woocommerce ul.products li.product .button, .woocommerce div.product form.cart .button, .woocommerce #review_form #respond .form-submit input, .woocommerce .widget_shopping_cart .buttons a, .woocommerce.widget_shopping_cart .buttons a, .woocommerce a.button, .instagallery-actions .igact-instalink, .ggt-slider-item-button, .ggt-button, .woocommerce button.button, .form-design-skin1 .wpcf7-form-control.wpcf7-submit {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px
+}
+
+aside.widget h5, aside h5, footer aside.widget h5 {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: .2px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px
+}
+
+.post-title {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 40px;
+    letter-spacing: -1px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px
+}
+
+    {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px
+}
+
+.post-categories a, .post-date, .post-like, .post-view, .author-name, .post-author-avatar span, .post-readmore, .widget_rss .rss-date, .post-share-btn span, .author_links a, .post-navigation .nav-btn, .comment-form .submit, .comment-body .reply a, .comment-body .edit-link a {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px
+}
+
+.ggt-heading .ggt-text, .banner-container .front .inner span, article.post_format-post-format-aside .entry-content>p, article.post_format-post-format-status .entry-content>p, article.post_format-post-format-quote .entry-summary blockquote, .author-content .description, .single-post blockquote, article.format-quote .entry-content blockquote, .aboutme-description, .blog article.post_format-post-format-quote .post-wrap-inner .entry-summary blockquote p, article.format-aside .entry-summary p, .ggt-calltoaction-subtitle, .ggt-team-members .ggt-team-member .ggt-team-member-text .ggt-team-member-position, .ggt-prefix, blockquote {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 25px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px
+}
+
+.breadcrumb-wrap .entry-title {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 30px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px
+}
+
+.breadcrumb-wrap .bread-current, .breadcrumb-wrap a {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px
+}
+
+h1, .h1 {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 55px;
+    letter-spacing: -2px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px
+}
+
+h1, .h1 {
+    color: #000
+}
+
+h2, .h2, .ggt-slider-item-title {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 45px;
+    letter-spacing: -.5px;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 40px
+}
+
+h2, .h2 {
+    color: #000
+}
+
+h3, .h3, .cart_totals h2, .woocommerce-edit-account h2 {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 35px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px
+}
+
+h3, .h3 {
+    color: #000
+}
+
+h4, .h4 {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 27px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px
+}
+
+h4, .h4, .comment-reply-title {
+    color: #000
+}
+
+h5, .h5, .vc_grid-filter-size-lg .vc_grid-filter-item span, .ggt-filter-item a {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 20px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px
+}
+
+h5, .h5 {
+    color: #000
+}
+
+h6, .h6, .vc_grid-filter-item, .vc_pageable-load-more-btn, .vc_tta-panel-title, .hover-hint {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 25px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px
+}
+
+h6, .h6 {
+    color: #000
+}
+
+footer aside.widget h5 {
+    font-family: "Futura PT Demi", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 22px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px
+}
+
+.footer-wrap, .footer-wrap a {
+    font-family: "Futura PT Book", Arial, Helvetica, sans-serif;
+    text-transform: none;
+    line-height: 26px;
+    letter-spacing: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 15px
+}
+
+</style><style data-type=vc_shortcodes-custom-css>.vc_custom_1541710039347 {
+    margin-bottom: -200px !important
+}
+
+.vc_custom_1595535165449 {
+    padding: 60px !important
+}
+
+.vc_custom_1542131820890 {
+    padding: 30px !important
+}
+
+.vc_custom_1595453813520 {
+    margin-top: 200px !important
+}
+
+.vc_custom_1595453823228 {
+    margin-top: 100px !important
+}
+
+.vc_custom_1595529141679 {
+    margin-bottom: -200px !important;
+    padding-right: 150px !important;
+    padding-left: 150px !important
+}
+
+.parallax-menu .menu-item,
+.parallax-menu .menu-item:hover,
+.parallax-menu .menu-item.current a,
+.desktop-menu .menu-item,
+.menu-right-fixed {
+    background: transparent
+}
+
+.wpb_animate_when_almost_visible {
+    opacity: 1
+}
