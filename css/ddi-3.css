@@ -43824,7 +43824,7 @@ body ul.wpb_thumbnails-fluid li .entry-content :last-child {
 
 @font-face {
     font-family: 'gogetthemes';
-    src: url('/wp-content/uploads/smile_fonts/gogetthemes/gogetthemes.ttf?pla0sk') format('truetype'), url('/wp-content/uploads/smile_fonts/gogetthemes/gogetthemes.woff?pla0sk') format('woff'), url('/wp-content/uploads/smile_fonts/gogetthemes/gogetthemes.svg?pla0sk#gogetthemes') format('svg');
+    src: url('../fonts/gogetthemes.ttf?pla0sk') format('truetype'), url('../fonts/gogetthemes.woff') format('woff'), url('/wp-content/uploads/smile_fonts/gogetthemes/gogetthemes.svg?pla0sk#gogetthemes') format('svg');
     font-weight: normal;
     font-style: normal
 }
