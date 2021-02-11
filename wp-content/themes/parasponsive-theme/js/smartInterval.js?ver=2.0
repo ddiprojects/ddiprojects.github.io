@@ -1,0 +1,63 @@
+/**
+ * Smart interval with resume
+ * @param callback
+ * @param time
+ * @constructor
+ */
+
+function SmartInterval(callback, time){
+    this.clockInterval = null;
+    this.uid = Math.random() * 100;
+    this.elapsedPrecision = 50;
+    this.time = time;
+    this.stepsNum = Math.floor(Number(this.time) / this.elapsedPrecision);
+    this.stepDelta = Number(this.time) / this.stepsNum;
+    this.progress = 0;
+    this.on = false;
+    this.callback = callback;
+}
+
+SmartInterval.prototype.iterate = function(){
+    if(this.on){
+        if(this.progress >= this.time){
+            this.callback();
+            this.progress = 0;
+        }
+        this.progress += this.stepDelta;
+    }
+};
+
+SmartInterval.prototype.set = function(resume){
+    resume = resume || false;
+
+    this.on = true;
+    if(!resume){
+        this.progress = 0;
+    }
+    clearInterval(this.clockInterval);
+    this.clockInterval = setInterval(
+        this.iterate.bind(this),
+        this.elapsedPrecision
+    );
+};
+
+SmartInterval.prototype.reset = function(){
+    this.clear();
+    this.set();
+};
+
+SmartInterval.prototype.pause = function(){
+    this.clear();
+};
+
+SmartInterval.prototype.resume = function(){
+    this.set(true);
+};
+
+SmartInterval.prototype.clear = function(){
+    this.on = false;
+};
+
+SmartInterval.prototype.toggle = function(){
+    this.on ? this.pause() : this.resume();
+};

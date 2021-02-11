@@ -1,0 +1,1629 @@
+(function ($) {
+    var Gridifier = function ($container) {
+        this.init($container);
+    };
+
+    /**
+     *
+     */
+    Gridifier.templates = {
+        loadmore: $('<div id="load-more" class="loadmore"><a href="#">' + "Load more " + '</a></div>')
+    };
+
+    /**
+     * AJAX WP handler
+     * @param action
+     * @param data
+     * @param callback
+     */
+
+    Gridifier.prototype.says = function (action, data, callback) {
+        var ajaxData = $.extend(true, data, { action: action });
+        var _this = this;
+        console.log(adminAjax);
+        console.log(action);
+        $.ajax({
+            type: "POST",
+            url: adminAjax,
+            data: ajaxData,
+            dataType: 'json',
+            success: function (response) {
+                _this[callback](response);
+            },
+            error: function (response) {
+                _this[callback](response);
+            }
+        });
+    };
+
+    /**
+     * Checks every interval for condition(), if true - executes callback
+     * @param condition
+     * @param callback
+     * @param interval
+     */
+
+    Gridifier.prototype.sitAndWait = function (condition, callback, interval) {
+
+        interval = interval || 50;
+
+        var waitInterval = setInterval(function () {
+            if (condition()) {
+                clearInterval(waitInterval);
+                callback();
+            }
+        }, interval);
+    };
+
+    /**
+     * creates filter for portfolio
+     * @returns {*|HTMLElement}
+     */
+
+    Gridifier.prototype.getFormFilter = function () {
+        var allClasses = [],
+            allSlugs = [],
+            allNames = {},
+            $items = this.$container.find('.grid-item'),
+            _this = this
+            ;
+        $items.each(function (index, value) {
+            var categories = $(this).data("categories");
+
+            if (categories && categories.length > 0) {
+                for (var i in categories) {
+                    var name = categories[i].name,
+                        slug = categories[i].slug
+                        ;
+                    allClasses.push(slug);
+                    allNames[slug] = name;
+                }
+            }
+        });
+
+        function uniqueFilter(itm, i, allClasses) {
+            return i == allClasses.indexOf(itm);
+        }
+
+        var uniqueClasses = allClasses.filter(uniqueFilter);
+
+        var filterList = $('<ul class="portfolio-filter clearfix" />');
+        for (var j in uniqueClasses) {
+            var lower = uniqueClasses[j];
+            lower = lower.split(' ').join('-');
+            filterList.append('<li><a href="#" data-filter="' + lower.toLowerCase() + '">' + allNames[uniqueClasses[j]] + '</a><span class="filter-count">' + this.$container.children("." + lower.toLowerCase()).length + '</span></li>');
+        }
+        filterList.prepend('<li class="selected"><a href="#" data-filter="all">All</a><span class="filter-count">' + this.$container.find(".grid-item").length + '</span></li>');
+
+        /**
+         * Filter condition
+         * @returns {boolean}
+         */
+
+        function filterCondition() {
+            if (_this.$off.length == 0) {
+                return _this.onAnimated >= _this.$on.length;
+            }
+            return _this.onAnimated >= _this.$on.length && _this.offAnimated >= _this.$off.length;
+        }
+
+        /**
+         * Callback for filter animation end
+         */
+
+        function onFilterAnimationEnd() {
+            setTimeout(function () {
+
+                _this.animatingFilter = false;
+                if (_this.options.type == "metro" || _this.options.type == "justified") {
+                    _this.metroLayout();
+                }
+                else if (_this.options.type == "masonry") {
+                    _this.masonryLayout();
+                }
+            }, 50);
+        }
+
+        /**
+         * Click events for filter
+         */
+
+        filterList.find('a').each(function () {
+            $(this).click(function (event) {
+
+                if (_this.animatingFilter) return false;
+                _this.animatingFilter = true;
+
+                event.preventDefault();
+                filterList.find('li').removeClass('selected');
+                $(this).parent().addClass('selected');
+
+                if ($(this).attr("data-filter") != "all") {
+
+                    _this.$on = _this.$container.find('.grid-item.' + $(this).attr("data-filter"));
+                    _this.$off = _this.$container.find('.grid-item:not(.' + $(this).attr("data-filter") + ')');
+
+                    /**
+                     * Animate hidhing items
+                     * @type {number}
+                     */
+
+                    _this.offAnimated = 0;
+
+                    $.each(_this.$off, function (index, value) {
+                        var $that = $(this);
+
+                        if (!$that.hasClass("filter-off")) {
+                            $that.removeClass("noanimation").addClass("hiding");
+
+                            $that.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                                $that.addClass("filter-off");
+                                $that.removeClass("hiding").addClass("noanimation");
+                                ++_this.offAnimated;
+                            });
+                        }
+                        else {
+                            ++_this.offAnimated; // if item is off already - just go on
+                        }
+                    });
+
+                    /**
+                     * Animate visible items
+                     * @type {number}
+                     */
+
+                    _this.onAnimated = 0;
+
+                    $.each(_this.$on, function () {
+                        var $that = $(this);
+
+                        if ($that.hasClass("filter-off")) {
+                            $that.removeClass("noanimation").addClass("showing");
+                            $that.removeClass("filter-off");
+
+                            $that.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                                $that.removeClass("showing").addClass("noanimation");
+                                ++_this.onAnimated;
+                            });
+                        }
+                        else {
+                            ++_this.onAnimated; // just go on, nothing to see here
+                        }
+                    });
+
+
+                }
+                else {
+                    _this.$on = _this.$container.find('.grid-item');
+
+                    _this.onAnimated = 0;
+
+                    _this.$on.each(function () {
+                        var $that = $(this);
+
+                        $that.removeClass("filter-off");
+                        $that.removeClass("noanimation").addClass("showing");
+                        $that.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                            $that.removeClass("showing").addClass("noanimation");
+                            ++_this.onAnimated;
+                        });
+                    });
+                }
+
+                /**
+                 * Now we sit and wait for animation end
+                 */
+
+                _this.$container.on("filterAnimationDone", onFilterAnimationEnd);
+                _this.sitAndWait(filterCondition, function () {
+                    _this.$container.trigger("filterAnimationDone");
+                });
+            });
+
+
+        });
+
+        return filterList;
+    };
+
+    /**
+     *
+     */
+
+    Gridifier.prototype.hideActivePopup = function () {
+        var $body = $('body'),
+            $placeholder = $(".placeholder"),
+            $sender = this.$container.find('.grid-item.ajax-content'),
+            $content = $body.find('.popup-content'),
+            _this = this;
+
+        $placeholder.css({
+            left: $sender.prop("offsetLeft") + "px",
+            top: $sender.prop("offsetTop") + "px",
+            width: $sender.width(),
+            height: $sender.height()
+        });
+        $content.css({opacity: 0});
+        setTimeout(function () {
+            $content.removeClass("show").css({opacity: ""}).html("");
+        }, 1000);
+        $placeholder.removeClass("visible");
+        setTimeout(function () {
+            $placeholder.css({opacity: 0});
+            setTimeout(function () {
+                $placeholder.remove();
+                _this.$container.css({
+                    "-webkit-transition": "all 0s linear",
+                    "-moz-transition": "all 0s linear",
+                    "transition": "all 0s linear"
+                });
+            }, 1000);
+        }, 1000);
+        $body.removeClass("view-full noscroll");
+        $sender.removeClass("ajax-content").css({opacity: 1});
+    };
+
+    /**
+     *
+     * @param data
+     * @returns {*|HTMLElement}
+     */
+    Gridifier.prototype.getContentForm = function (data) {
+        var $form;
+        $form = $(data.html);
+        return $form;
+    };
+
+    /**
+     *
+     */
+
+    Gridifier.prototype.loadMore = function () {
+        var _this = this,
+            $items = this.$container.find('.grid-item'),
+            itemsLength = $items.length,
+            action;
+
+        switch (this.options.contentType) {
+            case "portfolio":
+                action = "load_portfolio_items";
+                break;
+            case "blog":
+                action = "load_blog_items";
+                break;
+        }
+
+        this.says(action,
+            {
+                type: "multiple",
+                number: this.options.cols * this.options.loadmoreRows,
+                offset: itemsLength
+            },
+            "initGrid"
+        );
+        this.ajaxState = "waiting";
+    };
+
+    /**
+     * Get data from WP
+     * @param id
+     */
+    Gridifier.prototype.getItemData = function (id) {
+        var action;
+        switch (this.options.contentType) {
+            case "portfolio":
+                action = "get_portfolio_content";
+                break;
+            case "blog":
+                action = "get_blog_content";
+                break;
+        }
+
+        this.says(
+            action,
+            { id: id },
+            "loadItemData"
+        );
+        this.ajaxState = "waiting";
+    };
+
+    Gridifier.prototype.docElem = window.document.documentElement;
+
+    Gridifier.prototype.getViewportW = function () {
+        var client = this.docElem['clientWidth'],
+            inner = window['innerWidth'];
+
+        if (client < inner)
+            return inner;
+        else
+            return client;
+    };
+
+    Gridifier.prototype.getViewportH = function () {
+        var client = this.docElem['clientHeight'],
+            inner = window['innerHeight'];
+
+        if (client < inner)
+            return inner;
+        else
+            return client;
+    };
+
+    Gridifier.prototype.scrollX = function () {
+        return window.pageXOffset || this.docElem.scrollLeft;
+    };
+
+    Gridifier.prototype.scrollY = function () {
+        return window.pageYOffset || this.docElem.scrollTop;
+    };
+
+    /**
+     *
+     */
+
+    Gridifier.prototype.loadItemData = function (data) {
+        var $sender = this.$container.find('.ajax-content'),
+            $items = this.$container.find('.grid-item'),
+            _this = this
+            ;
+        this.ajaxState = "idle";
+        switch (this.options.showType) {
+
+            case "inline-content":
+                var senderRow = Math.ceil($items.index($sender) / this.options.cols); // get the row of this item
+                senderRow = senderRow > 0 ? senderRow : 1;
+                if ($items.length > senderRow * this.options.cols - 1) {
+                    $items.eq(senderRow * this.options.cols - 1).after(this.getContentForm(data));
+                }
+                else {
+                    $items.last().after(this.getContentForm(data));
+                }
+                // scroll to loaded content
+                var $anchor = this.$container.find('#portfolio-content');
+                $.scrollTo($anchor, {duration: 1000});
+                break;
+
+            case "popup-content":
+                var $placeholder = $('<div class="placeholder" />'),
+                    $body = $("body"),
+                    $content = $(".popup-content");
+
+                $placeholder.css({
+                    left: $sender.prop("offsetLeft") + "px",
+                    top: $sender.prop("offsetTop") + "px",
+                    width: $sender.width(),
+                    height: $sender.height()
+                });
+
+                this.$container.append($placeholder);
+                $sender.css({opacity: 0});
+
+                this.$container.css({
+                    "-webkit-transition": "all 0.3s linear",
+                    "-moz-transition": "all 0.3s linear",
+                    "transition": "all 0.3s linear"
+                });
+
+                $body.addClass("view-full noscroll");
+
+            function animatePlaceholder() {
+                $placeholder.css({
+                    left: Number(-1 * ( _this.$container.prop("offsetLeft") - _this.scrollX() )) + 'px',
+                    top: Number(-1 * ( _this.$container.prop("offsetTop") - _this.scrollY() )) + 'px'
+                });
+                // set the placeholders width to windows width and height to windows height
+                $placeholder.width(_this.getViewportW() + 'px');
+                $placeholder.height(_this.getViewportH() + 'px');
+                $placeholder.addClass("visible");
+            }
+
+                setTimeout(function () {
+                    animatePlaceholder();
+
+                    setTimeout(function () {
+                        $content.addClass("show");
+                        $content.append(_this.getContentForm(data));
+
+                        var $video = $content.find(".video-wrap");
+
+                        var $gallery = $("#popup-gallery"),
+                            $galleryItems = $gallery.find(".gallery-item")
+                            ;
+
+                        if($video.length){
+                            $video.videoHelper({ viewport: $(".video-wrap"), mode: "fitWidth" });
+                        }
+
+                        $content.runShortcodes();
+
+                        $content.find(".post-gallery").owlCarousel({items: 4, navigation: true, adaptiveHeight: false, autoPlay: true});
+                        $content.fitVids();
+
+                        var $inner = $content.find(".popup-inner"),
+                            $innerContent = $inner.find(".content"),
+                            $innerGallery = $inner.find(".gallery")
+                            ;
+                        $inner.addClass("show");
+
+                        var $close = $content.find(".close-popup");
+                        $close.click(function () {
+                            _this.hideActivePopup();
+                        });
+
+                        var $info = $("#popup-info"),
+                            $infoBtn = $("#popup-info-btn");
+
+                        $infoBtn.off("click");
+                        $infoBtn.on("click", function(){
+                            $info.toggleClass("open");
+                            $content.toggleClass("info-open");
+                        });
+
+                        setTimeout(function () {
+                            $innerContent.addClass("visible");
+                            $innerGallery.addClass("visible");
+
+                            function addWaypointImageLoader($item) {
+                                var $this = $item,
+                                    $next = $this.next(),
+                                    imageSrc = $this.attr("data-src");
+
+                                if (imageSrc) {
+                                    $this.waypoint(function () {
+                                            var image = new Image(),
+                                                $loader = $('<div class="cover"><div class="loader-small"></div></div>');
+
+                                            $this.append($loader);
+
+                                            image.addEventListener("load", function () {
+                                                $this.addClass("animated fadeInUp");
+                                                $this.append(image);
+                                                $loader.remove();
+                                                if ($next.length) {
+                                                    addWaypointImageLoader($next);
+                                                    setTimeout(function () {
+                                                        $.waypoints('refresh');
+                                                    }, 300);
+                                                }
+                                            });
+                                            image.src = imageSrc;
+                                        },
+                                        { offset: "90%", triggerOnce: true, context: $content });
+
+                                    setTimeout(function () {
+                                        $.waypoints('refresh');
+                                    }, 300);
+                                }
+                            }
+
+                            var $galleryItems = $(".gallery .gallery-item");
+
+                            if ($galleryItems.eq(0).attr("data-src")) {
+                                addWaypointImageLoader($galleryItems.eq(0)); // in video project type all images are lazy
+                            }
+                            else {
+                                addWaypointImageLoader($galleryItems.eq(1)); // in video first one already loaded
+                            }
+                        }, 100);
+                    }, 1100);
+
+                }, 500);
+
+                break;
+            default:
+                break;
+        }
+        // show it
+
+        $sender.find('.cover').remove();
+    };
+    /**
+     * Width / height calculation for big boxes
+     * @param $item
+     * @param base
+     */
+    Gridifier.prototype.setSize = function ($item) {
+        this.base = Math.ceil(this.base) || Math.ceil(this.$container.width() / this.options.cols);
+        if (!this.mobile) {
+            $item.width(Math.ceil(this.base * $item.data("widthX"))).height(Math.ceil(this.base * $item.data("heightX")));
+        }
+        else {
+            $item.width(this.base).height(this.base);
+        }
+    };
+    /**
+     * Checks, if box can fit at given position
+     */
+    Gridifier.prototype.canFit = function (width, x, offsets, originalOffsets) {
+        if (this.tryingHard == true) {
+            var result = (width <= ( offsets.length - x ))
+                && (offsets[x + (width - 1)] == offsets[x])
+                && (this.offsets[x] == offsets[x])
+                && (offsets[x + (width - 1)] == this.offsets[x + (width - 1)]);
+        }
+        return (width <= ( offsets.length - x ))
+            && (offsets[x + (width - 1)] == offsets[x])
+            && (this.offsets[x] == offsets[x])
+            && (offsets[x + (width - 1)] == this.offsets[x + (width - 1)]);
+    };
+    /**
+     *
+     * @param $item
+     * @param offsets
+     */
+    Gridifier.prototype.fitBox = function ($item, offsets) {
+        var width = $item.data("widthX"),
+            tmpOffsets = offsets.slice(0);
+        var minOffset = Math.min.apply(Math, tmpOffsets),
+            minIndex = tmpOffsets.indexOf(minOffset);
+        if (this.canFit(width, minIndex, tmpOffsets)) {
+            return minIndex;
+        }
+        else {
+            ++tmpOffsets[minIndex];
+            ++this.attempts;
+            if (this.attempts > 20) {
+                if (this.hardToFit == undefined) {
+                    this.hardToFit = [];
+                }
+                this.hardToFit.push($item);
+                return 'ouch';
+            }
+            return this.fitBox($item, tmpOffsets);
+        }
+    };
+    /**
+     * Metro layout with metro style support
+     */
+    Gridifier.prototype.metroLayout = function () {
+        var $items = this.$container.find('.grid-item:not(.filter-off):not(.placeholder)'),
+            _this = this;
+        this.offsets = [];
+        for (var k = 0; k < this.options.cols; k++) {
+            this.offsets.push(0);
+        }
+
+        $items.css({
+            "transition-duration": "0ms",
+            "-webkit-transition-duration": "0ms",
+            "-moz-transition-duration": "0ms"
+        });
+
+        $.each($items, function (index, value) {
+            var $thisItem = $(this);
+            _this.setSize($thisItem);
+
+            if (!_this.mobile) {
+                _this.attempts = 0;
+                var result = _this.fitBox($thisItem, _this.offsets);
+                if (result == 'ouch') { // couldn't fit box
+                    return; //return from .each is same as continue
+                }
+                else {
+                    var newX = result, newY = _this.offsets[newX];
+
+                    $thisItem.attr("data-left", Math.ceil(newX * _this.base) + "px").attr("data-top", Math.ceil(newY * _this.base) + "px");
+
+                    for (var i = newX; i < newX + $thisItem.data("widthX"); i++) {
+                        _this.offsets[i] += $thisItem.data("heightX");
+                    }
+
+                    if (_this.hardToFit && _this.hardToFit.length > 0) { // we'll try to fit old blocks
+                        var $hardItem = _this.hardToFit.pop();
+                        _this.tryingHard = true;
+                        result = _this.fitBox($hardItem, _this.offsets);
+                        _this.tryingHard = false;
+                        if (result == 'ouch') return;
+
+                        var newX = result, newY = _this.offsets[newX];
+
+                        $hardItem.attr("data-left", Math.ceil(newX * _this.base) + "px").attr("data-top", Math.ceil(newY * _this.base) + "px");
+                        for (var i = newX; i < newX + $hardItem.data("widthX"); i++) {
+                            _this.offsets[i] += $hardItem.data("heightX");
+                        }
+                        _this.initialAnimate($hardItem);
+                    }
+                }
+            }
+            else {
+                $thisItem.attr("data-left", 0).attr("data-top", index * _this.base + "px");
+            }
+        });
+
+        var height = Math.max.apply(Math, _this.offsets) * _this.base;
+        if (_this.mobile) {
+            height = $items.length * _this.base;
+        }
+        this.$container.height(height);
+
+        /**
+         * Animate items
+         */
+
+        $items.css({
+            "transition-duration": "100ms",
+            "-webkit-transition-duration": "100ms",
+            "-moz-transition-duration": "100ms"
+        });
+
+        setTimeout(function(){
+
+            $items.each(function () {
+                var $item = $(this);
+
+                $item.css({left: $item.attr("data-left"), top: $item.attr("data-top"), opacity: 1}); // position the element
+
+                if (!$item.hasClass("fully-loaded")) {
+                    var image = new Image(),
+                        $cover = $('<div class="cover"><div class="loader-small"></div></div>');
+
+                    $item.append($cover);
+                    $item.css({"display": "block"});
+                    $(image).load(function () {
+                        $cover.remove();
+                    });
+                    image.src = $item.attr("data-image-src");
+                }
+            });
+        }, 50);
+    };
+
+    /**
+     * Masonry layout
+     */
+
+    Gridifier.prototype.masonryLayout = function () {
+        var $items = this.$container.find('.grid-item:not(.filter-off)'),
+            cols = this.options.cols,
+            width = !this.mobile ? Math.ceil((this.$container.width() / cols)) : this.$container.width(),
+            offsets = [],
+            mobileOffset = 0,
+            _this = this;
+
+        for (var k = 0; k < cols; k++) {
+            offsets.push(0);
+        }
+
+        _this.$container.imagesLoaded().always(function () {
+
+            $items.css({width: width + "px"});
+            $items.css({height: "auto"});
+
+            $items.find(".format-video").fitVids();
+
+            $items.css({
+                "transition-duration": "0ms",
+                "-webkit-transition-duration": "0ms",
+                "-moz-transition-duration": "0ms"
+            });
+
+            var galleries = $items.find('.post-gallery'),
+                galleriesTotal = galleries.length,
+                galleriesDone = 0;
+
+            setTimeout(function(){
+                galleries.each(function () {
+                    var carousel = $(this).data("owlCarousel"),
+                        $wrap = $(this).parent(),
+                        $owl = $(this),
+                        $next = $wrap.find(".blog-gallery-next"),
+                        $prev = $wrap.find(".blog-gallery-prev"),
+                        options = {
+                            navigation : false, // Show next and prev buttons
+                            pagination: false,
+                            items: 1,
+                            singleItem: true,
+                            autoPlay: true,
+                            afterInit: function(){
+                                setTimeout(function(){
+                                    ++galleriesDone;
+                                }, 50);
+                            }
+
+                        };
+                    carousel ? carousel.reinit(options) : $(this).owlCarousel(options);
+
+                    var owl = $(this).data("owlCarousel");
+
+                    $next.off("click");
+                    $next.on("click", function(){
+                        $owl.trigger("owl.next")
+                    });
+
+                    $prev.off("click");
+                    $prev.on("click", function(){
+                        $owl.trigger("owl.prev")
+                    });
+
+                });
+            }, 100);
+
+            function resetMasonry(){
+                $.each($items, function (index, value) {
+                    var m = offsets.indexOf(Math.min.apply(Math, offsets)),
+                        $thisItem = $(this),
+                        offset = offsets[m];
+
+                    if (!_this.mobile) {
+                        $thisItem.attr("data-left", m * width + 'px');
+                        $thisItem.attr("data-top", offset + "px");
+                    }
+                    else {
+                        $thisItem.attr("data-left", 0);
+                        $thisItem.attr("data-top", mobileOffset + "px");
+                        mobileOffset += $thisItem.height();
+                    }
+                    offsets[m] += $(this).height();
+                });
+
+                var height;
+
+                if (!_this.mobile) {
+                    height = Math.max.apply(Math, offsets);
+                }
+                else {
+                    height = mobileOffset;
+                }
+                _this.$container.height(height);
+
+                /**
+                 * Make the transition
+                 */
+
+                $items.css({
+                    "transition-duration": "100ms",
+                    "-webkit-transition-duration": "100ms",
+                    "-moz-transition-duration": "100ms"
+                });
+
+                for (var i = 0; i < $items.length; i++) {
+                    var $item = $($items[i]);
+                    if (!$item.hasClass("initialized")) {
+                        _this.initialAnimate($item);
+                        $item.addClass("initialized");
+                    }
+                    $item.css({left: $item.attr("data-left"), top: $item.attr("data-top"), opacity: 1});
+                }
+            }
+
+            /**
+             * If we have galleries, wait while they are ready
+             */
+
+            if(galleriesTotal){
+                function galleriesReady(){
+                    return galleriesDone >= galleriesTotal;
+                }
+                _this.sitAndWait(galleriesReady, function () {
+                    setTimeout(function(){
+                        resetMasonry();
+                    }, 100);
+                });
+            }
+            else{
+                setTimeout(function(){
+                    resetMasonry();
+                }, 100);
+            }
+        });
+    };
+
+    /**
+     *
+     * @param $items
+     */
+
+    Gridifier.prototype.initialAnimate = function ($thisItem) {
+        if (!($("html").hasClass("ie"))) {
+            $thisItem.addClass("animated fadeIn");
+            $thisItem.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $thisItem.css({opacity: 1});
+                $thisItem.removeClass("animated fadeIn").addClass("fully-loaded");
+            });
+            $thisItem.show();
+        }
+        else {
+            $thisItem.addClass("animated fadeIn").addClass("fully-loaded");
+            $thisItem.css({opacity: 1});
+        }
+    };
+
+    /**
+     *
+     */
+    Gridifier.prototype.loadContent = function () {
+        var _this = this,
+            $items = this.$container.find('.grid-item'),
+
+            itemsLength = $items.length,
+            action;
+            console.log(this.$container);
+            console.log($items);
+
+        switch (this.options.contentType) {
+            case "portfolio":
+                action = "load_portfolio_items";
+                break;
+            case "blog":
+                action = "load_blog_items";
+                break;
+            case "photogallery":
+                action = "load_photogallery_items";
+                break;
+            case "gallerylist":
+                action = "load_gallery_list";
+                break;
+        }
+
+        this.says(
+            action,
+            {
+                type: "multiple",
+                number: this.options.cols * this.options.loadmoreRows,
+                offset: itemsLength,
+                columns: this.options.cols,
+                layout: _this.options.type,
+                categories: _this.options.categories,
+                galleryID: this.options.galleryID,
+                showSliders: this.options.showSliders,
+                pageID: this.options.pageID
+            },
+            "initGrid"
+        );
+
+        this.ajaxState = "waiting";
+    };
+    /**
+     * @TODO: - add blog hide content
+     *
+     */
+    Gridifier.prototype.hideActiveContent = function () {
+        var content = this.$container.find('.portfolio-content-wrapper');
+        content.removeClass("animated fadeInLeftBig").addClass('animated fadeOutLeftBig');
+        setTimeout(function () {
+            content.slideUp(600);
+        }, 600);
+        setTimeout(function () {
+            content.remove();
+        }, 1200);
+        this.$container.find('.grid-item').removeClass("ajax-content");
+    };
+
+    /**
+     *
+     * @param $content
+     */
+    Gridifier.prototype.bindGridEvents = function ($content) {
+        var _this = this;
+        /**
+         *  Bind single portfolio
+         *  content loader
+         */
+
+        if (this.options.showType == "popup-content") {
+            $content.find('.grid-item').each(function () {
+                var $item = $(this),
+                    $gallery = $(this).find(".post-gallery");
+                if($gallery.length){
+                    $item.find(".gallery-image, a").click(function (event) {
+                        if (!_this.mobileDevice) {
+                            event.preventDefault();
+                            $item.prepend('<div class="cover"><div class="loader-small"></div></div>').find('.cover').fadeIn();
+                            $item.addClass('ajax-content');
+                            _this.getItemData($item.attr("data-post-id"));
+                        }
+                    })
+                }
+                else{
+                    $(this).click(function (event) {
+                        if (!_this.mobileDevice) {
+                            event.preventDefault();
+                            $(this).prepend('<div class="cover"><div class="loader-small"></div></div>').find('.cover').fadeIn();
+                            $(this).addClass('ajax-content');
+                            _this.getItemData($(this).attr("data-post-id"));
+                        }
+                    })
+                }
+
+            });
+        }
+        $content.find('.grid-video').each(function () {
+            var $video = $(this).find('video'),
+                $cover = $(this).parent().find(".portfolio-image"),
+                $item = $(this).parents(".grid-item");
+            $item.hover(function () {
+                    $cover.removeClass("animated fadeIn");
+                    $cover.addClass("animated fadeOut");
+                    $video.get(0).play();
+                },
+                function () {
+                    $video.get(0).pause();
+                    $cover.removeClass("animated fadeOut");
+                    $cover.addClass("animated fadeIn");
+                });
+        });
+
+        if ("gallerylist" == this.options.contentType) {
+            $content.find(".metro-gallery").each(function(index){
+                var $gallery = $(this);
+                setTimeout(function(){
+                    $gallery.simpleSlider(6000);
+                }, Math.random() * 5000);
+            });
+        }
+
+        var $prettyImages = $content.find("a.prettyphoto");
+        $prettyImages.each(function(){
+            $(this).attr("rel", $(this).attr("data-rel"));
+        });
+        console.log($prettyImages.prettyPhoto());
+        $prettyImages.prettyPhoto({default_width: 800, default_height: 450});
+
+        $content.find(".image-like").click(function (event) {
+            event.preventDefault();
+
+            if ($(this).hasClass("clicked")) return;
+
+            var id = $(this).attr("data-image-id")
+                ;
+
+            _this.says(
+                "image_like",
+                {
+                    imageID: id
+                },
+                "parseResponse"
+            );
+
+            $(this).addClass("like-request");
+        });
+    };
+
+    /**
+     *
+     * @param response
+     */
+
+    Gridifier.prototype.parseResponse = function (response) {
+        var $sender = this.$container.find(".like-request"),
+            $likeCount = $sender.find(".like-count")
+            ;
+        if(!$likeCount.length){
+            $likeCount = $('<span class="like-count"></span>');
+            $sender.append($likeCount);
+        }
+        $sender.removeClass("like-request");
+        $likeCount.html(response.likes);
+        $sender.addClass("clicked");
+    };
+
+    /**
+     *
+     * @param items
+     * @param $content
+     * @returns {}
+     */
+
+    Gridifier.prototype.getFormPhotogalleryItems = function (items, $content) {
+        var _this = this;
+
+        for (var i = 0; i < items.length; i++) {
+            var $item = $(items[i].html);
+            if (this.options.type == "justified") {
+                /**
+                 * Justified grid is just a metro with sizes turned off
+                 */
+                $item.addClass("justified")
+                    .addClass("box11")
+                    .data("boxSize", 11)
+                    .data("widthX", 1)
+                    .data("heightX", 1);
+            }
+            else if (this.options.type == "masonry") {
+                $item.addClass("masonry");
+            }
+            $content.append($item);
+        }
+        return $content;
+    };
+
+    /**
+     *
+     * @param items
+     * @param $content
+     * @returns {}
+     */
+    Gridifier.prototype.getFormGalleryListItems = function (items, $content) {
+        var _this = this;
+        for (var i = 0; i < items.length; i++) {
+            var $item = $(items[i].html);
+            if (this.options.type == "justified") {
+                /**
+                 * Justified grid is just a metro with sizes turned off
+                 */
+                $item.addClass("justified")
+                    .addClass("box11")
+                    .data("boxSize", 11)
+                    .data("widthX", 1)
+                    .data("heightX", 1);
+            }
+            else if (this.options.type == "metro") {
+                $item.addClass("metro")
+                    .addClass("box-" + items[i].boxSize)
+                    .data("boxSize", items[i].boxSize)
+                    .data("widthX", Math.floor(Number(items[i].boxSize) / 10))
+                    .data("heightX", Number(items[i].boxSize) % 10);
+            }
+            else if (this.options.type == "masonry") {
+                $item.addClass("masonry");
+            }
+            var categories = items[i].categories;
+            for (var j in categories) {
+                var cat = categories[j].name;
+                console.log(cat);
+                if(cat){
+                    $item.addClass(cat.toLowerCase().split(' ').join('-'));
+                }
+            }
+            $item.data("categories", categories);
+            console.log($item.data());
+            $content.append($item);
+        }
+        return $content;
+    };
+
+    Gridifier.prototype.portfolioHoverEffect = function () {
+        var $grid = $(".gridifier");
+
+        if (!$grid.length /*|| ($grid.attr("data-type") !== 'justified' && $grid.attr("data-type") !== 'metro')*/) return;
+
+        (function () {
+            $(function () {
+                var columns, current, easing, grid, hideItem, showItem, time;
+                grid = $grid;
+                var type = $grid.attr("data-type");
+                current = {
+                    index: -1,
+                    column: 0,
+                    line: 0
+                };
+                columns = Number($grid.attr("data-cols"));
+                $(window).on("updatecols", function () {
+                    columns = Number($grid.attr("data-cols-responsive"));
+                });
+                easing = "cubic-bezier(0.165, 0.840, 0.440, 1.000)";
+                time = 400;
+                grid.on("mouseenter", ".grid-item", (function (_this) {
+                    return function (e) {
+                        var column, el, image, index, info, item, line;
+                        el = $(e.currentTarget);
+                        info = el.find(".portfolio-content");
+                        image = el.find(".portfolio-image");
+                        index = el.index();
+                        var left = 0, top = 0, cLeft = 0, cTop = 0;
+                        column = index % columns;
+                        line = Math.floor(index / columns);
+
+                        item = {
+                            el: el,
+                            index: index,
+                            column: column,
+                            line: line,
+                            info: info,
+                            image: image
+                        };
+                        if (current.el && current.index === index) {
+                            return;
+                        }
+                        if ("justified" == type) {
+                            if (line === current.line && column > current.column) {
+                                showItem(item, "-100%", 0, "25%", 0);
+                                hideItem(current, "100%", 0, "-25%", 0);
+                            } else if (line === current.line && column < current.column) {
+                                showItem(item, "100%", 0, "-25%", 0);
+                                hideItem(current, "-100%", 0, "25%", 0);
+                            } else if (line > current.line && column === current.column) {
+                                showItem(item, 0, "-100%", 0, "25%");
+                                hideItem(current, 0, "100%", 0, "-25%");
+                            } else {
+                                showItem(item, 0, "100%", 0, "-25%");
+                                hideItem(current, 0, "-100%", 0, "25%");
+                            }
+                        }
+                        else { // metro & masonry
+                            left = $(el).attr("data-left") ? Number($(el).attr("data-left").replace("px", "").replace("%", "")) : 0;
+                            top = $(el).attr("data-top") ? Number($(el).attr("data-top").replace("px", "").replace("%", "")) : 0;
+                            cLeft = $(current.el).attr("data-left") ? Number($(current.el).attr("data-left").replace("px", "").replace("%", "")) : 0;
+                            cTop = $(current.el).attr("data-top") ? Number($(current.el).attr("data-top").replace("px", "").replace("%", "")) : 0;
+
+                            //console.log(left, top, cLeft, cTop);
+
+                            if ("metro" == type) { // metro, top bottom priority
+                                if (top > cTop) {
+                                    //console.log("to top");
+                                    showItem(item, 0, "-100%", 0, "25%");
+                                    hideItem(current, 0, "100%", 0, "-25%");
+                                } else if (top < cTop) {
+                                    //console.log("to bottom");
+                                    showItem(item, 0, "100%", 0, "-25%");
+                                    hideItem(current, 0, "-100%", 0, "25%");
+                                }
+                                else if (left > cLeft) {
+                                    //console.log("to right");
+                                    showItem(item, "-100%", 0, "25%", 0);
+                                    hideItem(current, "100%", 0, "-25%", 0);
+                                } else if (left < cLeft) {
+                                    //console.log("to left");
+                                    showItem(item, "100%", 0, "-25%", 0);
+                                    hideItem(current, "-100%", 0, "25%", 0);
+                                }
+                                else {
+                                    //console.log("default to top");
+                                    showItem(item, 0, "-100%", 0, "25%");
+                                    hideItem(current, 0, "100%", 0, "-25%");
+                                }
+                            }
+                            else { // masonry, left right priority
+
+                                if (left > cLeft) {
+                                    //console.log("to right");
+                                    showItem(item, "-100%", 0, "25%", 0);
+                                    hideItem(current, "100%", 0, "-25%", 0);
+                                } else if (left < cLeft) {
+                                    //console.log("to left");
+                                    showItem(item, "100%", 0, "-25%", 0);
+                                    hideItem(current, "-100%", 0, "25%", 0);
+                                }
+                                else if (top > cTop) {
+                                    //console.log("to top");
+                                    showItem(item, 0, "-100%", 0, "25%");
+                                    hideItem(current, 0, "100%", 0, "-25%");
+                                } else if (top < cTop) {
+                                    //console.log("to bottom");
+                                    showItem(item, 0, "100%", 0, "-25%");
+                                    hideItem(current, 0, "-100%", 0, "25%");
+                                }
+                                else {
+                                    //console.log("default to top");
+                                    showItem(item, 0, "-100%", 0, "25%");
+                                    hideItem(current, 0, "100%", 0, "-25%");
+                                }
+                            }
+
+                        }
+                        return current = item;
+                    };
+                })(this));
+
+
+                showItem = function (item, infoX, infoY, imageX, imageY) {
+                    item.info.stop().css({
+                        x: infoX,
+                        y: infoY,
+                        display: "block"
+                    }).transition({
+                        x: 0,
+                        y: 0,
+                        duration: time,
+                        easing: easing
+                    });
+                    return item.image.stop().transition({
+                        x: imageX,
+                        y: imageY,
+                        opacity: .5,
+                        duration: time,
+                        easing: easing
+                    });
+                };
+                return hideItem = function (item, infoX, infoY, imageX, imageY) {
+                    if (!item.el) {
+                        return;
+                    }
+                    item.info.stop().transition({
+                        x: infoX,
+                        y: infoY,
+                        duration: time,
+                        easing: easing
+                    });
+                    return item.image.stop().css({
+                        x: imageX,
+                        y: imageY,
+                        opacity: .5
+                    }).transition({
+                        x: 0,
+                        y: 0,
+                        opacity: 1,
+                        duration: time,
+                        easing: easing
+                    });
+                };
+            });
+
+        }).call(this);
+    };
+
+    /**
+     *
+     * @param items
+     * @param $content
+     * @returns {}
+     */
+    Gridifier.prototype.getFormPortfolioItems = function (items, $content) {
+        var _this = this;
+        for (var i = 0; i < items.length; i++) {
+            var $item = $(items[i].html);
+            if (this.options.type == "justified") {
+                /**
+                 * Justified grid is just a metro with sizes turned off
+                 */
+                $item.addClass("justified")
+                    .addClass("box11")
+                    .data("boxSize", 11)
+                    .data("widthX", 1)
+                    .data("heightX", 1);
+            }
+            else if (this.options.type == "metro") {
+                $item.addClass("metro")
+                    .addClass("box-" + items[i].boxSize)
+                    .data("boxSize", items[i].boxSize)
+                    .data("widthX", Math.floor(Number(items[i].boxSize) / 10))
+                    .data("heightX", Number(items[i].boxSize) % 10);
+            }
+            else if (this.options.type == "masonry") {
+                $item.addClass("masonry");
+            }
+            var categories = items[i].categories;
+            for (var j in categories) {
+                var cat = categories[j].name;
+                $item.addClass(cat.toLowerCase().split(' ').join('-'));
+            }
+            $item.data("categories", categories);
+            $content.append($item);
+        }
+        return $content;
+    };
+    /**
+     *
+     * @param items
+     * @param $content
+     * @returns {*}
+     */
+    Gridifier.prototype.getFormBlogItems = function (items, $content) {
+
+        var _this = this;
+
+        for (var i in items) {
+            var $item = $(items[i].html);//$(this.itemTemplate);
+            if (this.options.type == "justified") {
+                $item.addClass("justified " + this.colClasses[ this.options.cols ])
+                    .attr("data-post-id", items[i].id);
+            }
+            else if (this.options.type == "metro") {
+                $item.addClass("metro")
+                    .addClass("box-" + items[i].boxSize)
+                    .data("boxSize", items[i].boxSize)
+                    .data("widthX", Math.floor(Number(items[i].boxSize) / 10))
+                    .data("heightX", Number(items[i].boxSize) % 10)
+                    .attr("data-post-id", items[i].id);
+            }
+            else if (this.options.type == "masonry") {
+                $item.addClass("masonry");
+            }
+            var categories = items[i].categories;
+            for (var j in categories) {
+                var cat = categories[j].slug;
+                $item.addClass(cat.toLowerCase().split(' ').join('-'));
+            }
+
+            $item.data("categories", categories);
+            $content.append($item);
+        }
+
+        return $content;
+    };
+
+    /**
+     *
+     */
+
+    Gridifier.prototype.initLikes = function(){
+
+        this.$container.find("a.pf-like").each(function(){
+
+            var $btn = $(this),
+                $item = $(this).parents(".grid-item"),
+                id = Number($item.attr("data-post-id")),
+                count = $btn.find(".like-count");
+
+            $btn.off("click");
+            $btn.on("click", function () {
+
+                if ($(this).hasClass("clicked")) return false;
+
+                $.ajax({
+                    type: "POST",
+                    url: adminAjax,
+                    data: {
+                        action: "portfolio_like",
+                        postID: id
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        count.html(response.likes);
+                        $btn.addClass("clicked");
+                        console.log(response.likes);
+                    },
+                    error: function (response) {
+                        console.log("error");
+                    }
+                });
+
+                return false;
+            });
+
+        });
+    };
+
+    /**
+     *
+     * @param items
+     * @returns {*}
+     */
+    Gridifier.prototype.getFormItems = function (items) {
+        var _this = this,
+            $content = $('<div class="gridifier-items clearfix" />');
+        switch (this.options.contentType) {
+            case "portfolio":
+                $content = this.getFormPortfolioItems(items, $content);
+                break;
+            case "blog":
+                $content = this.getFormBlogItems(items, $content);
+                break;
+            case "photogallery":
+                $content = this.getFormPhotogalleryItems(items, $content);
+                break;
+            case "gallerylist":
+                $content = this.getFormGalleryListItems(items, $content);
+                break;
+        }
+        this.bindGridEvents($content);
+        return $content.children();
+    };
+    /**
+     *
+     */
+    Gridifier.prototype.initGrid = function (data) {
+        console.log(data);
+        var _this = this,
+            items = data.items,
+            $filter = $("#grid-filter")
+            ;
+
+        this.ajaxState = "idle";
+
+        if (this.firstRun == true) {
+            /**
+             * Hide filter window
+             * @type {*|HTMLElement}
+             */
+
+            this.firstRun = false;
+        }
+        else if ($('.loadmore').length) {
+            this.initState = "working";
+            this.scrollPosition = $('.loadmore').get(0).offsetTop;
+        }
+
+        var $items = this.getFormItems(items);
+        console.log($items);
+        this.$container.append($items);
+
+        this.initLikes();
+
+        if (this.options.filter == "1") {
+            $filter.html("");
+            $filter.append(this.getFormFilter());
+        }
+
+        _this.itemsLeft = data.itemsLeft || "";
+
+        if (!data.loadmore) {
+            this.loadMoreState = false;
+            $("#infscroll").remove();
+        }
+
+        setTimeout(function () {
+            _this.$container.find(".cover").remove();
+            console.log(_this.$preloader);
+            $(window).trigger("resize");
+            $(window).trigger("scroll");
+            _this.$preloader.remove();
+        }, 300);
+    };
+
+    Gridifier.prototype.mobileCheck = function () {
+        var ua = navigator.userAgent.toLowerCase();
+        this.android = ua.indexOf("android") > -1;
+        this.iPhone = navigator.userAgent.match(/iPhone/i);
+        this.iPad = navigator.userAgent.match(/iPad/i);
+        this.mobileDevice = this.android || this.iPhone || this.iPad || $(window).width() <= 1024;
+    };
+    /**
+     *
+     * @param $container
+     */
+    Gridifier.prototype.init = function ($container) {
+        this.$container = $container;
+
+        this.$preloader = this.$container.find(".grid-wrap-preloader");
+
+        this.options = {
+            type: $container.attr("data-type"),
+            contentType: $container.attr("data-content-type"),
+            itemTemplate: $container.attr("data-item-template"),
+            cols: $container.attr("data-cols"),
+            filter: $container.attr("data-filter"),
+            postId: $container.attr("data-id") || "",
+            initRows: $container.attr("data-init-rows"),
+            categories: $container.attr("data-categories") || "",
+            initLoaded: false,
+            showSliders: $container.attr("data-show-sliders"),
+            loadmoreRows: $container.attr("data-loadmore-rows"),
+            showType: $container.attr("data-show-type"),
+            infScroll: $container.attr("data-infscroll"),
+            masonryAnimate: false,
+            galleryID: $container.attr("data-gallery-id"),
+            pageID: $container.attr("data-page-id")
+        };
+        if (this.options.categories) {
+            this.selectedCategories = this.options.categories.split(", ");
+        }
+        else {
+            this.selectedCategories = [];
+        }
+        this.itemsLeft = "";
+        this.mobileCheck();
+        this.ajaxState = "idle";
+        this.loadMoreState = true;
+        this.$container.addClass("columns" + this.options.cols);
+        this.firstRun = true;
+
+        $container.data("gridifier", this);
+
+        console.log(this.options);
+
+        this.loadContent();
+        var _this = this,
+            $window = $(window);
+        /**
+         * Responsive for Masonry
+         */
+
+        this.portfolioHoverEffect();
+
+        $(window).on("debouncedresize", function () {
+            console.log('resize');
+            _this.mobileCheck();
+            if ($window.width() <= 480) {
+                _this.base = _this.$container.width();
+                _this.options.cols = 1;
+                _this.mobile = true;
+                _this.$container.addClass("mobile");
+                _this.$container.removeClass("desktop");
+                _this.$container.removeClass("tablet");
+            }
+            else if ($window.width() > 480 && $window.width() <= 1280 && _this.$container.attr("data-cols") == 6) {
+                _this.options.cols = 4;
+                _this.base = _this.$container.width() / _this.options.cols;
+                _this.mobile = false;
+                _this.tablet = true;
+                _this.$container.addClass("tablet");
+                _this.$container.removeClass("desktop");
+                _this.$container.removeClass("mobile");
+            }
+            else if ($window.width() >= 768 && $window.width() <= 1024 && (_this.$container.attr("data-cols") == 6 || _this.$container.attr("data-cols") == 4)) {
+                _this.options.cols = 2;
+                _this.base = _this.$container.width() / _this.options.cols;
+                _this.mobile = false;
+                _this.tablet = true;
+                _this.$container.addClass("tablet");
+                _this.$container.removeClass("desktop");
+                _this.$container.removeClass("mobile");
+            }
+            else if ($window.width() > 480 && $window.width() <= 1280 && _this.$container.attr("data-cols") >= 3) {
+                _this.options.cols = 2;
+                _this.base = _this.$container.width() / _this.options.cols;
+                _this.mobile = false;
+                _this.tablet = true;
+                _this.$container.addClass("tablet");
+                _this.$container.removeClass("desktop");
+                _this.$container.removeClass("mobile");
+            }
+            else {
+                if (_this.mobile || _this.tablet) {
+                    _this.options.cols = _this.$container.attr("data-cols");
+                }
+
+                if (_this.$container.width() % _this.options.cols) {
+                    _this.$container.width(_this.$container.width() - 1);
+                }
+
+                _this.base = _this.$container.width() / _this.options.cols;
+
+                _this.mobile = false;
+                _this.tablet = false;
+                _this.$container.addClass("desktop");
+                _this.$container.removeClass("mobile");
+                _this.$container.removeClass("tablet");
+            }
+
+            setTimeout(function(){
+                if (_this.options.type == "metro" || _this.options.type == "justified") {
+                    _this.metroLayout();
+                }
+                else if (_this.options.type == "masonry") {
+                    _this.masonryLayout();
+                }
+            }, 300);
+
+            _this.$container.attr("data-cols-responsive", _this.options.cols);
+            $(window).trigger("updatecols");
+
+            _this.$container.parent().find('.loadmore').remove();
+
+            if (_this.loadMoreState && !_this.options.infScroll && !$('.loadmore').length) {
+                var parent = _this.$container.parent(),
+                    itemsCount = _this.itemsLeft ? "&nbsp;(" + _this.itemsLeft + ")" : "";
+
+                _this.$container.after($('<div id="load-more" class="loadmore"><a href="#">' + "Load more " + itemsCount + '</a></div>'));
+                parent.find('.loadmore').click(function (event) {
+                    event.preventDefault();
+                    $(this).addClass('fadeOutDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).css({opacity: 0});
+                    });
+                    _this.hideActiveContent();
+                    _this.$container.append('<div class="cover"><div class="loader-small"></div></div>');
+                    _this.loadContent();//_this.loadMore();
+                });
+                if (_this.initState == "working") {
+                    $('html').scrollTo({top: _this.scrollPosition - 190 + 'px', left: 0}, 800);
+                    _this.initState = "done";
+                }
+            }
+        });
+
+        /**
+         * Infinite scroll
+         */
+
+        if (this.options.infScroll) {
+            var $infMarker = $('<div id="infscroll"></div>');
+            $container.parent().append($infMarker);
+            $window.on("scroll", function () {
+                if (!_this.loadMoreState) return;
+                if (_this.ajaxState == "idle" && $infMarker.offset().top < ( $window.scrollTop() + $window.height())) {
+                    _this.ajaxState = "waiting";
+                    _this.$container.append('<div class="cover"><div class="loader-small"></div></div>');
+                    _this.loadContent();
+                }
+            });
+        }
+    };
+
+    /**
+     * jQuery bridge
+     */
+    $.fn.gridifier = function () {
+        var gridifierItems = $('.gridifier');
+        gridifierItems.each(function (index, value) {
+            var gridifier = new Gridifier($(this));
+        });
+    };
+    /**
+     * Fire it!
+     */
+    $(document).ready(function () {
+        $("#page-content").gridifier();
+    });
+
+})(jQuery);
